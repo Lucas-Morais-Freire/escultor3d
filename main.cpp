@@ -146,15 +146,38 @@ void cabinTube(Sculptor* S, int x, int y, int z) {
     putCylinder(S, 18 + x, 18 + y, 72.5 + z, 18 + x, 18 + y, 73.5 + z, 2.5);
 }
 
+void sideTube(Sculptor* S, int x, int y, int z) {
+    (*S).setColor(232,221,187);
+    for (int i = 0; i <= 4; i++) {
+        (*S).putBox(x, 41 + x, -(7*i)/5 + 6 + y, (7*i)/5 + 20 + y, i + z, i + z);
+        if (i == 0) {
+            continue;
+        }
+        (*S).cutBox(1 + x, 40 + x, -(7*i)/5 + 8 + y, (7*i)/5 + 18 + y, i + z, i + z);
+    }
+    for (int i = 5; i <= 15; i++) {
+        (*S).putBox(x, 41 + x, y, 26 + y, i + z, i + z);
+        (*S).cutBox(1 + x, 40 + x, 1 + y, 25 + y, i + z, i + z);
+    }
+    for (int i = 16; i <= 20; i++) {
+        (*S).putBox(x, 41 + x, (70*i - 1056)/50 + y, -(70*i - 756)/50 + 32 + y, i + z, i + z);
+        if (i == 20) {
+            continue;
+        }
+        (*S).cutBox(1 + x, 40 + x, (70*i - 1056)/50 + 2 + y, -(70*i - 756)/50 + 30 + y, i + z, i + z);
+    }
+}
+
 int main() {
     Sculptor falcon(400,400,250);
 
     body(&falcon, 0, 10, 0);
-    upperNose(&falcon, 63, 29, 93);
-    lowerNose(&falcon, 63, 9, 93);
-    leftHorn(&falcon, 83, 23, 127);
-    rightHorn(&falcon, 24, 23, 127);
-    cabinTube(&falcon,-8,12,73);
+    //upperNose(&falcon, 63, 29, 93);
+    //lowerNose(&falcon, 63, 9, 93);
+    //leftHorn(&falcon, 83, 23, 127);
+    //rightHorn(&falcon, 24, 23, 127);
+    //cabinTube(&falcon,-8,12,73);
+    sideTube(&falcon, 94, 12, 65);
 
     falcon.writeOFF("falcon.off");
 

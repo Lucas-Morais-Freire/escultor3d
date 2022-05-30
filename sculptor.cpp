@@ -120,9 +120,9 @@ void Sculptor::putEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int r
     unsigned long long Rx = (unsigned long long)rx;
     unsigned long long Ry = (unsigned long long)ry;
     unsigned long long Rz = (unsigned long long)rz;
-    for (long long i = xc - Rx; i <= xc + Rx; i++) {
-        for (long long j = yc - Ry; j <= yc + Ry; j++) {
-            for (long long k = zc - Rz; k <= zc + Rz; k++) {
+    for (long long i = xc - (long long)Rx; i <= xc + (long long)Rx; i++) {
+        for (long long j = yc - (long long)Ry; j <= yc + (long long)Ry; j++) {
+            for (long long k = zc - (long long)Rz; k <= zc + (long long)Rz; k++) {
                 if (0 <= i && i < nx && 0 <= j && j < ny && 0 <= k && k < nz) {
                     if (((unsigned long long)((i - xc)*(i - xc)))*Ry*Ry*Rz*Rz + ((unsigned long long)((j - yc)*(j - yc)))*Rx*Rx*Rz*Rz + ((unsigned long long)((k - zc)*(k - zc)))*Ry*Ry*Rx*Rx <= Rx*Rx*Ry*Ry*Rz*Rz) {
                         v[i][j][k].isOn = true;
