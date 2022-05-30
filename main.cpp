@@ -149,23 +149,32 @@ void cabinTube(Sculptor* S, int x, int y, int z) {
 void sideTube(Sculptor* S, int x, int y, int z) {
     (*S).setColor(232,221,187);
     for (int i = 0; i <= 4; i++) {
-        (*S).putBox(x, 41 + x, -(7*i)/5 + 6 + y, (7*i)/5 + 20 + y, i + z, i + z);
+        (*S).putBox(x, 41 + x, -(9*i)/5 + 8 + y, (9*i)/5 + 22 + y, i + z, i + z);
         if (i == 0) {
             continue;
         }
-        (*S).cutBox(1 + x, 40 + x, -(7*i)/5 + 8 + y, (7*i)/5 + 18 + y, i + z, i + z);
+        (*S).cutBox(1 + x, 40 + x, -(9*i)/5 + 10 + y, (9*i)/5 + 20 + y, i + z, i + z);
     }
     for (int i = 5; i <= 15; i++) {
-        (*S).putBox(x, 41 + x, y, 26 + y, i + z, i + z);
-        (*S).cutBox(1 + x, 40 + x, 1 + y, 25 + y, i + z, i + z);
+        (*S).putBox(x, 41 + x, y, 30 + y, i + z, i + z);
+        (*S).cutBox(1 + x, 40 + x, 1 + y, 29 + y, i + z, i + z);
     }
     for (int i = 16; i <= 20; i++) {
-        (*S).putBox(x, 41 + x, (70*i - 1056)/50 + y, -(70*i - 756)/50 + 32 + y, i + z, i + z);
+        (*S).putBox(x, 41 + x, (90*i - 9)/50 - 27 + y, -(90*i - 9)/50 + 57 + y, i + z, i + z);
         if (i == 20) {
             continue;
         }
-        (*S).cutBox(1 + x, 40 + x, (70*i - 1056)/50 + 2 + y, -(70*i - 756)/50 + 30 + y, i + z, i + z);
+        (*S).cutBox(1 + x, 40 + x, (90*i - 9)/50 - 25 + y, -(90*i - 9)/50 + 55 + y, i + z, i + z);
     }
+}
+
+void leftWindow(Sculptor* S, int x, int y, int z) {
+    for (int i = 0; i <= 12; i++) {
+        (*S).cutBox(i + x, i + x, y, 17 + y, -(3*i)/12 + z, (3*i)/12 + 20 + z);
+    }
+    (*S).putBox(8 + x, 8 + x, 5 + y, 11 + y, 23 + z, 23 + z);
+    (*S).putBox(4 + x, 7 + x, 3 + y, 13 + y, 22 + z, 22 + z);
+    (*S).putBox(x, 3 + x, 2 + y, 14 + y, 21 + z, 21 + z);
 }
 
 int main() {
@@ -177,7 +186,9 @@ int main() {
     //leftHorn(&falcon, 83, 23, 127);
     //rightHorn(&falcon, 24, 23, 127);
     //cabinTube(&falcon,-8,12,73);
-    sideTube(&falcon, 94, 12, 65);
+    sideTube(&falcon, 94, 10, 65);
+    //sideTube(&falcon, 15, 10, 65);
+    leftWindow(&falcon, 136, 17, 65);
 
     falcon.writeOFF("falcon.off");
 
