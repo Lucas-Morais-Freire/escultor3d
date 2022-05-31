@@ -56,23 +56,36 @@ void cutCylinder(Sculptor* S, float xa, float ya, float za, float xb, float yb, 
 }
 
 void body(Sculptor* S, int x, int y, int z) {
-    (*S).setColor(232,221,187);
+    (*S).setColor(180,180,180);
+    (*S).putEllipsoid(75 + x, 16 + y, 75 + z, 75, 15, 75);
+    (*S).cutEllipsoid(75 + x, 16 + y, 75 + z, 73, 13, 73);
+    putCylinder(S, 75 + x, 18.5 + y, 75 + z, 75 + x, 19.5 + y, 75 + z, 75);
+    (*S).cutBox(x, 150 + x, y, 18 + y, z, 75 + z);
+    putCylinder(S, 75 + x, 10.5 + y, 75 + z, 75 + x, 11.5 + y, 75 + z, 75);
+    cutCylinder(S, 75 + x, 10.5 + y, 75 + z, 75 + x, 11.5 + y, 75 + z, 72);
+    (*S).cutBox(x, 150 + x, y, 30 + y, 70 + z, 150 + z);
+    (*S).cutBox(127 + x, 128 + x, 11 + y, 19 + y, 21 + z, 23 + z);
+    (*S).cutBox(22 + x, 23 + x, 11 + y, 19 + y, 21 + z, 23 + z);
+    for (int i = 0; i <= 70; i++) {
+        (*S).cutBox(x - 1, i - 1 + x, 11 + y, 30 + y, i + z, i + z);
+        (*S).cutBox(151 - i + x, 151 + x, 11 + y, 30 + y, i + z, i + z);
+    }
     (*S).putEllipsoid(75 + x, 15 + y, 75 + z, 75, 15, 75);
     (*S).cutEllipsoid(75 + x, 15 + y, 75 + z, 73, 13, 73);
     cutCylinder(S, 75 + x, 12 + y, 75 + z, 75 + x, 18 + y, 75 + z, 75);
-    putCylinder(S, 75 + x, 12 + y, 75 + z, 75 + x, 18 + y, 75 + z, 73);
-    cutCylinder(S, 75 + x, 12 + y, 75 + z, 75 + x, 18 + y, 75 + z, 71);
+    putCylinder(S, 75 + x, 12 + y, 75 + z, 75 + x, 18 + y, 75 + z, 70);
+    cutCylinder(S, 75 + x, 12 + y, 75 + z, 75 + x, 18 + y, 75 + z, 68);
     putCylinder(S, 75 + x, 29.5 + y, 75 + z, 75 + x, 30.5 + y, 75 + z, 17);
     putCylinder(S, 75 + x, 30.5 + y, 75 + z, 75 + x, 31.5 + y, 75 + z, 16);
     cutCylinder(S, 75 + x, 30.5 + y, 82 + z, 75 + x, 31.5 + y, 82 + z, 6);
     (*S).setColor(50,50,50);
     (*S).putBox(69 + x, 81 + x, 30 + y, 30 + y, 76 + z, 88 + z);
-    (*S).setColor(232,221,187);
+    (*S).setColor(180,180,180);
     putCylinder(S, 75 + x, 29.5 + y, 82 + z, 75 + x, 30.5 + y, 82 + z, 3.5);
     cutCylinder(S, 75 + x, 29.5 + y, 82 + z, 75 + x, 30.5 + y, 82 + z, 2.5);
     (*S).setColor(50,50,50);
     (*S).putBox(72 + x, 78 + x, 29 + y, 29 + y, 79 + z, 85 + z);
-    (*S).setColor(232,221,187);
+    (*S).setColor(180,180,180);
     (*S).putVoxel(77 + x, 30 + y, 86 + z);
     (*S).putVoxel(78 + x, 30 + y, 87 + z);
     (*S).putVoxel(73 + x, 30 + y, 86 + z);
@@ -92,7 +105,7 @@ void body(Sculptor* S, int x, int y, int z) {
 }
 
 void upperNose(Sculptor* S, int x, int y, int z) {
-    (*S).setColor(232,221,187);
+    (*S).setColor(180,180,180);
     for (int i = 0; i < 66; i++) {
         (*S).putBox((6*i)/66 + x, -(6*i)/66 + 24 + x, y, -(13*i)/74 + 12 + y, i + z, i + z);
         (*S).cutBox((6*i)/66 + 1 + x, -(6*i)/66 + 23 + x, 1 + y, -(13*i)/74 + 11 + y, i + z, i + z);
@@ -100,7 +113,7 @@ void upperNose(Sculptor* S, int x, int y, int z) {
 }
 
 void lowerNose(Sculptor* S, int x, int y, int z) {
-    (*S).setColor(232,221,187);
+    (*S).setColor(180,180,180);
     for (int i = 0; i < 66; i++) {
         (*S).putBox((6*i)/66 + x, -(6*i)/66 + 24 + x, (13*i)/74 + y, 12 + y, i + z, i + z);
         (*S).cutBox((6*i)/66 + 1 + x, -(6*i)/66 + 23 + x, (13*i)/74 + 1 + y, 11 + y, i + z, i + z);
@@ -108,29 +121,29 @@ void lowerNose(Sculptor* S, int x, int y, int z) {
 }
 
 void leftHorn(Sculptor* S, int x, int y, int z) {
-    (*S).setColor(232,221,187);
-    for (int i = 0; i <= 78; i++) {
-        (*S).putBox(x, -(36*i)/79 + 43 + x, y, 4 + y, i + z, i + z);
+    (*S).setColor(180,180,180);
+    for (int i = -6; i <= 78; i++) {
+        (*S).putBox(x, -(36*i)/79 + 43 + x, -1 + y, 5 + y, i + z, i + z);
         if (i == 78) {
             continue;
         }
-        (*S).cutBox(1 + x, -(36*i)/79 + 42 + x, 1 + y, 3 + y, i + z, i + z);
+        (*S).cutBox(1 + x, -(36*i)/79 + 42 + x, y, 4 + y, i + z, i + z);
     }
 }
 
 void rightHorn(Sculptor* S, int x, int y, int z) {
-    (*S).setColor(232,221,187);
-    for (int i = 0; i <= 78; i++) {
-        (*S).putBox((36*i)/79 + x, 43 + x, y, 4 + y, i + z, i + z);
+    (*S).setColor(180,180,180);
+    for (int i = -6; i <= 78; i++) {
+        (*S).putBox((36*i)/79 + x, 43 + x, -1 + y, 5 + y, i + z, i + z);
         if (i == 78) {
             continue;
         }
-        (*S).cutBox((36*i)/79 + 1 + x, 42 + x, 1 + y, 3 + y, i + z, i + z);
+        (*S).cutBox((36*i)/79 + 1 + x, 42 + x, y, 4 + y, i + z, i + z);
     }
 }
 
 void cabinTube(Sculptor* S, int x, int y, int z) {
-    (*S).setColor(232,221,187);
+    (*S).setColor(180,180,180);
     (*S).putSphere(18 + x, 18 + y, 44 + z, 9);
     (*S).cutSphere(18 + x, 18 + y, 44 + z, 8);
     putCylinder(S, 18 + x, 18 + y, 44 + z, 62.16 + x, 19.27 + y, 18.59 + z, 9);
@@ -147,7 +160,7 @@ void cabinTube(Sculptor* S, int x, int y, int z) {
 }
 
 void sideTube(Sculptor* S, int x, int y, int z) {
-    (*S).setColor(232,221,187);
+    (*S).setColor(180,180,180);
     for (int i = 0; i <= 4; i++) {
         (*S).putBox(x, 41 + x, -(9*i)/5 + 8 + y, (9*i)/5 + 22 + y, i + z, i + z);
         if (i == 0) {
@@ -168,27 +181,62 @@ void sideTube(Sculptor* S, int x, int y, int z) {
     }
 }
 
-void leftWindow(Sculptor* S, int x, int y, int z) {
+void leftTruncCone(Sculptor* S, int x, int y, int z) {
     for (int i = 0; i <= 12; i++) {
         (*S).cutBox(i + x, i + x, y, 17 + y, -(3*i)/12 + z, (3*i)/12 + 20 + z);
     }
     (*S).putBox(8 + x, 8 + x, 5 + y, 11 + y, 23 + z, 23 + z);
     (*S).putBox(4 + x, 7 + x, 3 + y, 13 + y, 22 + z, 22 + z);
     (*S).putBox(x, 3 + x, 2 + y, 14 + y, 21 + z, 21 + z);
+    (*S).putBox(8 + x, 8 + x, 5 + y, 11 + y, -3 + z, -3 + z);
+    (*S).putBox(4 + x, 7 + x, 3 + y, 13 + y, -2 + z, -2 + z);
+    (*S).putBox(x, 3 + x, 2 + y, 14 + y, -1 + z, -1 + z);
+    for (int i = 0; i <= 7; i++) {
+        putCylinder(S, -0.5 + i + x, 8 + y, 10 + z, 0.5 + i + x, 8 + y, 10 + z,-((float)(2.5*i))/7 + 10.5);
+        if (i == 6) {
+            continue;
+        }
+        cutCylinder(S, -0.5 + i + x, 8 + y, 10 + z, 0.5 + i + x, 8 + y, 10 + z,-((float)(2.5*i))/7 + 9.5);
+    }
+}
+
+void rightTruncCone(Sculptor* S, int x, int y, int z) {
+    for (int i = 12; i >= 0; i--) {
+        (*S).cutBox(12 - i + x, 12 - i + x, y, 17 + y, -(3*i)/12 + z, (3*i)/12 + 20 + z);
+    }
+    (*S).putBox(4 + x, 4 + x, 5 + y, 11 + y, 23 + z, 23 + z);
+    (*S).putBox(5 + x, 8 + x, 3 + y, 13 + y, 22 + z, 22 + z);
+    (*S).putBox(9 + x, 12 + x, 2 + y, 14 + y, 21 + z, 21 + z);
+    (*S).putBox(4 + x, 4 + x, 5 + y, 11 + y, -3 + z, -3 + z);
+    (*S).putBox(5 + x, 8 + x, 3 + y, 13 + y, -2 + z, -2 + z);
+    (*S).putBox(9 + x, 12 + x, 2 + y, 14 + y, -1 + z, -1 + z);
+    for (int i = 7; i >= 0; i--) {
+        putCylinder(S, 12.5 - i + x, 8 + y, 10 + z, 11.5 - i + x, 8 + y, 10 + z,-((float)(2.5*i))/7 + 10.5);
+        if (i == 6) {
+            continue;
+        }
+        cutCylinder(S, 12.5 - i + x, 8 + y, 10 + z, 11.5 - i + x, 8 + y, 10 + z,-((float)(2.5*i))/7 + 9.5);
+    }
+}
+
+void cleanInside(Sculptor* S, int x, int y, int z) {
+    (*S).cutEllipsoid(75 + x, 15 + y, 75 + z, 62, 13, 62);
 }
 
 int main() {
     Sculptor falcon(400,400,250);
 
     body(&falcon, 0, 10, 0);
-    //upperNose(&falcon, 63, 29, 93);
-    //lowerNose(&falcon, 63, 9, 93);
-    //leftHorn(&falcon, 83, 23, 127);
-    //rightHorn(&falcon, 24, 23, 127);
-    //cabinTube(&falcon,-8,12,73);
+    upperNose(&falcon, 63, 29, 93);
+    lowerNose(&falcon, 63, 9, 93);
+    leftHorn(&falcon, 83, 23, 127);
+    rightHorn(&falcon, 24, 23, 127);
+    cabinTube(&falcon,-8,12,73);
     sideTube(&falcon, 94, 10, 65);
-    //sideTube(&falcon, 15, 10, 65);
-    leftWindow(&falcon, 136, 17, 65);
+    leftTruncCone(&falcon, 136, 17, 65);
+    sideTube(&falcon, 15, 10, 65);
+    rightTruncCone(&falcon, 2, 17, 65);
+    cleanInside(&falcon, 0, 10, 0);
 
     falcon.writeOFF("falcon.off");
 
