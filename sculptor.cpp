@@ -1,6 +1,7 @@
 #include "sculptor.h"
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 
 Sculptor::Sculptor(int _nx, int _ny, int _nz) {
     nx = _nx; ny = _ny; nz = _nz;
@@ -33,7 +34,7 @@ Sculptor::~Sculptor() {
     delete[] v;
 }
 
-void Sculptor::setColor(unsigned char _r, unsigned char _g, unsigned char _b, unsigned char _a) {
+void Sculptor::setColor(float _r, float _g, float _b, float _a) {
     r = _r; g = _g; b = _b; a = _a;
 }
 
@@ -188,7 +189,7 @@ void Sculptor::writeOFF(const char* filename) {
         for (int j = 0; j < ny; j++) {
             for (int k = 0; k < nz; k++) {
                 if (v[i][j][k].isOn) {
-                    fout << "4 " << count << " " << 3 + count << " " << 2 + count << " " << 1 + count << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << "\n" << "4 " << 4 + count << " " << 5 + count << " " << 6 + count << " " << 7 + count << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << "\n" << "4 " << count << " " << 1 + count << " " << 5 + count << " " << 4 + count << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << "\n" << "4 " << count << " " << 4 + count << " " << 7 + count << " " << 3 + count << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << "\n" << "4 " << 3 + count << " " << 7 + count << " " << 6 + count << " " << 2 + count << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << "\n" << "4 " << 1 + count << " " << 2 + count << " " << 6 + count << " " << 5 + count << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << "\n";
+                    fout << std::fixed << std::setprecision(0) << "4 " << count << " " << 3 + count << " " << 2 + count << " " << 1 + count << " " << std::setprecision(4) << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << "\n" << "4 " << std::setprecision(0) << 4 + count << " " << 5 + count << " " << 6 + count << " " << 7 + count << " " << std::setprecision(4) << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << "\n" << "4 " << std::setprecision(0) << count << " " << 1 + count << " " << 5 + count << " " << 4 + count << " " << std::setprecision(4) << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << "\n" << "4 " << std::setprecision(0) << count << " " << 4 + count << " " << 7 + count << " " << 3 + count << " " << std::setprecision(4) << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << "\n" << "4 " << std::setprecision(0) << 3 + count << " " << 7 + count << " " << 6 + count << " " << 2 + count << " " << std::setprecision(4) << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << "\n" << "4 " << std::setprecision(0) << 1 + count << " " << 2 + count << " " << 6 + count << " " << 5 + count << " " << std::setprecision(4) << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << "\n";
                     count += 8;
                 }
             }

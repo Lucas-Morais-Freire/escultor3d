@@ -13,11 +13,11 @@ private:
     Voxel ***v;
     // 3D matrix
     int nx,ny,nz; // Dimensions
-    unsigned char r, g, b, a; // Current drawing color
+    float r, g, b, a; // Current drawing color
 public:
     Sculptor(int _nx, int _ny, int _nz);
     ~Sculptor();
-    void setColor(unsigned char _r, unsigned char _g, unsigned char _b, unsigned char _a=255);
+    void setColor(float _r, float _g, float _b, float _a);
     void putVoxel(int x, int y, int z);
     void cutVoxel(int x, int y, int z);
     void putBox(int x0, int x1, int y0, int y1, int z0, int z1);
