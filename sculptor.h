@@ -26,6 +26,8 @@ public:
     void cutSphere(int xcenter, int ycenter, int zcenter, int radius);
     void putEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int ry, int rz);
     void cutEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int ry, int rz);
+    void putCylinder(float xa, float ya, float za, float xb, float yb, float zb, float rad);
+    void cutCylinder(float xa, float ya, float za, float xb, float yb, float zb, float rad);
     void writeOFF(const char* filename);
 };
 
